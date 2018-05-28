@@ -1,0 +1,22 @@
+<!-- Use ng-repeat to loop over items in an array-->
+<div class="row">
+  <span ng-if="!menu.items">Loading</span>
+  <div class="items-container" ng-repeat="item in menu.items">
+    <div class="col-12 col-sm-4">
+      <img class="item__image" ng-src="images/{{item.img}}" alt="{{item.name}}">
+      <h4><a ui-sref="item({id: item.id})">{{item.name}}</a></h4>
+      <p>Rating: {{item.rating}} <span ng-if="item.rating > 4.0" ng-class="{highlight: item.rating > 4.0}"> - People love this item!</span></p>
+      <button ng-click="menu.increment(item)">+</button>
+      <button ng-click="menu.decrement(item)">-</button>
+
+      <div class="well">
+        <select ng-model="item.meal" name="">
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+        </select>
+        <button ng-click="menu.chooseItem(item.meal, item.name)">Select Item</button>
+      </div>
+    </div>
+  </div>
+</div>
